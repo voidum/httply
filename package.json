@@ -1,0 +1,35 @@
+{
+  "name": "httply",
+  "version": "0.1.0",
+  "description": "A wrapper for incoming and outgoing HTTP message.",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "eslint . && nyc --reporter=lcov mocha test/index.js --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voidum/httply.git"
+  },
+  "keywords": [
+    "http",
+    "message",
+    "server"
+  ],
+  "author": "Sartrey Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/voidum/httply/issues"
+  },
+  "homepage": "https://github.com/voidum/httply#readme",
+  "devDependencies": {
+    "coveralls": "^3.1.0",
+    "eslint": "^7.3.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "mocha": "^8.0.1",
+    "nyc": "^15.1.0"
+  }
+}
