@@ -1,6 +1,6 @@
 # Httply
 
-[![Build Status](https://travis-ci.org/voidum/httply.svg?branch=master)](https://travis-ci.org/voidum/httply)
+[![Build Status](https://travis-ci.com/voidum/httply.svg?branch=master)](https://travis-ci.com/voidum/httply)
 [![Coverage Status](https://coveralls.io/repos/github/voidum/httply/badge.svg?branch=master)](https://coveralls.io/github/voidum/httply?branch=master)
 
 A wrapper for incoming and outgoing HTTP message.
