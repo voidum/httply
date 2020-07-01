@@ -8,7 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "eslint . && nyc --reporter=lcov mocha test/index.js --exit"
+    "test": "eslint . && nyc --reporter=lcov mocha test/index.js --exit",
+    "lcov": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,7 @@
   "keywords": [
     "http",
     "message",
-    "server"
+    "server-side"
   ],
   "author": "Sartrey Lee",
   "license": "MIT",
@@ -30,6 +31,10 @@
     "eslint": "^7.3.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "mocha": "^8.0.1",
+    "node-fetch": "^2.6.0",
     "nyc": "^15.1.0"
+  },
+  "dependencies": {
+    "bl": "^4.0.2"
   }
 }
