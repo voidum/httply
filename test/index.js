@@ -4,7 +4,7 @@ const server = require('./server');
 const { OutgoingMessage } = require('../lib');
 
 function request(url, options = {}) {
-  if (!options.headers) options.headers = {}
+  if (!options.headers) options.headers = {};
   if (!options.headers['user-agent']) {
     options.headers['user-agent'] = 'httply-test';
   }
@@ -27,7 +27,7 @@ describe('httply', () => {
           query: {},
           method: 'GET',
           headers: {
-            'user-agent': 'httply-test',
+            'user-agent': 'httply-test'
           }
         });
       });
@@ -42,7 +42,7 @@ describe('httply', () => {
           query: { a: 1, b: 2, c: '中国' },
           method: 'GET',
           headers: {
-            'user-agent': 'httply-test',
+            'user-agent': 'httply-test'
           }
         });
       });
@@ -62,7 +62,7 @@ describe('httply', () => {
           headers: {
             'user-agent': 'httply-test',
             'content-length': '13',
-            'content-type': 'text/plain;charset=UTF-8',
+            'content-type': 'text/plain;charset=UTF-8'
           },
           body: JSON.stringify({ a: 1, b: 2 })
         });
