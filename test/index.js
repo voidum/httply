@@ -1,7 +1,7 @@
 const assert = require('assert');
 const fetch = require('node-fetch');
 const server = require('./server');
-const { OutgoingMessage } = require('../lib');
+const { OutgoingMessage, IncomingMessage } = require('../lib');
 
 function request(url, options = {}) {
   if (!options.headers) options.headers = {};
@@ -18,11 +18,18 @@ describe('httply', () => {
     });
   });
 
+  it('new incoming with protocol', () => {
+    const incoming1 = new IncomingMessage({ url: '/', method: 'DELETE', protocol: 'https' });
+    const incoming2 = new IncomingMessage({ url: '/', method: 'DELETE', protocol: 'HTTPS' });
+    assert.strictEqual(incoming1.protocol, 'https');
+    assert.strictEqual(incoming2.protocol, 'http');
+  });
+
   it('incoming get', () => {
     return request('/proxy')
       .then(response => response.json())
       .then(json => {
-        assert.deepEqual(json, {
+        assert.deepStrictEqual(json, {
           url: '/proxy',
           query: {},
           method: 'GET',
@@ -37,9 +44,9 @@ describe('httply', () => {
     return request('/proxy?a=1&b=2&c=%E4%B8%AD%E5%9B%BD')
       .then(response => response.json())
       .then(json => {
-        assert.deepEqual(json, {
+        assert.deepStrictEqual(json, {
           url: '/proxy?a=1&b=2&c=%E4%B8%AD%E5%9B%BD',
-          query: { a: 1, b: 2, c: '中国' },
+          query: { a: '1', b: '2', c: '中国' },
           method: 'GET',
           headers: {
             'user-agent': 'httply-test'
@@ -55,7 +62,7 @@ describe('httply', () => {
     })
       .then(response => response.json())
       .then(json => {
-        assert.deepEqual(json, {
+        assert.deepStrictEqual(json, {
           url: '/proxy',
           query: {},
           method: 'POST',
@@ -73,7 +80,7 @@ describe('httply', () => {
     return request('/write-string')
       .then(response => response.text())
       .then(text => {
-        assert.equal(text, 'text');
+        assert.strictEqual(text, 'text');
       });
   });
 
@@ -85,8 +92,8 @@ describe('httply', () => {
 
   it('outgoing content empty', () => {
     const outgoing = new OutgoingMessage({ status: 200, content: null });
-    assert.equal(outgoing.content, '');
-    assert.equal(outgoing.headers['content-type'], 'text/plain');
+    assert.strictEqual(outgoing.content, '');
+    assert.strictEqual(outgoing.headers['content-type'], 'text/plain');
   });
 
   it('outgoing content buffer with content-type = text', () => {
@@ -97,25 +104,25 @@ describe('httply', () => {
       }
     })
       .then(response => {
-        assert.equal(response.headers.get('content-type'), 'text/plain');
+        assert.strictEqual(response.headers.get('content-type'), 'text/plain');
       });
   });
 
   it('outgoing content buffer without content-type', () => {
     return request('/write-buffer')
       .then(response => {
-        assert.equal(response.headers.get('content-type'), 'application/octet-stream');
+        assert.strictEqual(response.headers.get('content-type'), 'application/octet-stream');
       });
   });
 
   it('outgoing content binary', () => {
     return request('/write-binary')
       .then(response => {
-        assert.equal(response.headers.get('content-type'), 'application/octet-stream');
+        assert.strictEqual(response.headers.get('content-type'), 'application/octet-stream');
         return response.buffer();
       })
       .then(buffer => {
-        assert.equal(buffer.toString(), 'nothing here');
+        assert.strictEqual(buffer.toString(), 'nothing here');
       });
   });
 });

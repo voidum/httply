@@ -4,4 +4,4 @@
 3. test (ok)
 
 ## Milestone 1
-TODO
+1. typescript support
