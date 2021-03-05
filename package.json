@@ -28,13 +28,13 @@
   "homepage": "https://github.com/voidum/httply#readme",
   "devDependencies": {
     "coveralls": "^3.1.0",
-    "eslint": "^7.12.1",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "mocha": "^8.2.0",
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "mocha": "^8.3.0",
     "node-fetch": "^2.6.1",
     "nyc": "^15.1.0"
   },
   "dependencies": {
-    "bl": "^4.0.3"
+    "bl": "^4.1.0"
   }
 }
